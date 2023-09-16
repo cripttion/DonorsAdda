@@ -1,25 +1,14 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express();
-require('dotenv').config(); // Load dotenv configuration
 app.use(express.json());
 
-const MONGODB_URI = process.env.DATABASE_URL; 
-mongoose.connect(MONGODB_URI,{
-    useNewUrlParser:true,
-    useUnifiedTopology:true
-})
-.then(()=>{
-    console.log("Connected to MongoDb");
-})
-.catch((err)=>{
-    console.log("Error while connecting to databse",err.message);
-})
+const connectDB = require('./db'); // Import the database connection
+const apiRoutes = require('./routes/apiRoutes'); // Import the route definitions
 
-app.get("/api",(req,res)=>{
-    res.json({"users":["useraone","usertwo"]})
-})
+connectDB(); // Call the function to establish the database connection
 
-app.listen(5000,()=>{
-    console.log("Server stated on port 5000");
-})
+app.use('/', apiRoutes); // Use the route definitions
+
+app.listen(5000, () => {
+  console.log('Server started on port 5000');
+});
