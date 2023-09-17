@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 
+import Home from './Pages/Home';
+import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
+import Donate from './Pages/Donate';
+import NotFoundPage from './Pages/NotFoundPage';
+
 function App() {
-  const [udata, setData] = useState([]);
-
-  useEffect(() => {
-    fetch("/api")
-      .then((response) => response.json()) // Return the parsed JSON data
-      .then((data) => {
-        
-        setData(data.users);
-        
-        
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
+  
   return (
-    <div className="App">
-      {udata.map((user, i) => (
-        <p key={i}>{user}</p>
-      ))}
-    </div>
+
+    <Router>
+    
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/donate" element={<Donate />} />
+      <Route path="*" element={<NotFoundPage />}/>
+           
+     </Routes>
+  
+    </Router>
+    
   );
 }
 
