@@ -5,6 +5,8 @@ import Home from './Pages/Home';
 import { BrowserRouter as Router, Route,Routes } from 'react-router-dom';
 import Donate from './Pages/Donate';
 import NotFoundPage from './Pages/NotFoundPage';
+import Login from './Layouts/Login';
+import Register from './Layouts/Register';
 
 function App() {
   
@@ -15,6 +17,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/donate" element={<Donate />} />
+      <Route path='/login' element={<Login />} />
+      <Route path='/register' element={<Register />} />
       <Route path="*" element={<NotFoundPage />}/>
            
      </Routes>
