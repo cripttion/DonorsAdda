@@ -1,17 +1,16 @@
 const mongoose = require('mongoose');
 
-const donorDetailsSchema = new mongoose.Schema({
+const receiverSchema = new mongoose.Schema({
   trackingIds: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Tracking' }], // References to Tracking schema
   Address: String,
   Phone: String,
-  Date: String,
   Name: String,
   Email:String,
-  AdharCardNo: String,
+  AdharCardNo:String,
   password:String,
-  AnonymousDonor: Boolean,
+  Age:String,
 });
 
-const DonorDetails = mongoose.model('Donor', donorDetailsSchema);
+const ReceiverDetails = mongoose.model('Receivers', receiverSchema);
 
-module.exports = DonorDetails;
+module.exports = ReceiverDetails;
