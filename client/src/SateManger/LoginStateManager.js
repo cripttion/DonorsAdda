@@ -4,9 +4,10 @@ export const LoginStateManager=({children})=> {
     const[loginState,setLoginSate] = useState(false);
     const[loginRole,setLoginRole] = useState("");
     const[userData,setUserData] = useState([{}]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
         <loginStateManager.Provider 
-          value={{loginState,loginRole,setLoginSate,setLoginRole,userData,setUserData}}>
+          value={{loginState,loginRole,setLoginSate,setLoginRole,userData,setUserData,isLoggedIn, setIsLoggedIn}}>
             {children}
           </loginStateManager.Provider>
     )

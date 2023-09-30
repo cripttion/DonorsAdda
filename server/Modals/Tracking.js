@@ -10,14 +10,23 @@ const trackingSchema = new mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:'Receivers'
   },
+  NgoDetails:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'Ngo'
+  },
   DonatedObjects: 
     {
       Name: String,
       Number: String,
-      Images: [String],
+      Images: [{
+        imgname: String,
+        imgdata: String
+      }],
       Availability: Boolean,
       Category: String,
+      UpiId:String,
       Amount: Number,
+      Message:String,
       Date:String,
     },
   status:{

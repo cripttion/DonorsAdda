@@ -20,7 +20,7 @@ function Register() {
     const[receiver,setReceiver] = useState(false);
     const[ngo,setNgo] = useState(false);
     const[Age,setAge] = useState("16");
-    const [Ngoid,setNgoId] = useState("");
+    const [NgoId,setNgoId] = useState("");
   const handleDonorClick = ()=>{
     if(!donor)
     {
@@ -73,6 +73,18 @@ if(receiver){
         Age
 
     }
+}
+if(ngo){
+  formData={
+      Address,
+      Phone,
+      Name,
+      Email,
+      AdharCardNo,
+      password,
+      NgoId
+
+  }
 }
 let endpoint= '/registerDonor'
 if (receiver) {
@@ -144,7 +156,7 @@ const handlesubmit = async (e) => {
                        <input type='password' value={password} onChange={(e)=>{setPassword(e.target.value)}} className='w-full rounded-md border-2 focus:outline-none block border-black p-1 placeholder:text-gray-400 mt-2' placeholder='*********'  />
                        {receiver&&<input type='text' value={Age} onChange={(e)=>{setAge(e.target.value)}} className='w-full rounded-md border-2 focus:outline-none block border-black p-1 placeholder:text-gray-400  mt-2' placeholder='16 years'  />
 }
-{ngo&&                       <input type='text' value={Ngoid} onChange={(e)=>{setNgoId(e.target.value)}} className='w-full rounded-md border-2 focus:outline-none block border-black p-1 placeholder:text-gray-400  mt-2' placeholder='NGO Id....'  />
+{ngo&&                       <input type='text' value={NgoId} onChange={(e)=>{setNgoId(e.target.value)}} className='w-full rounded-md border-2 focus:outline-none block border-black p-1 placeholder:text-gray-400  mt-2' placeholder='NGO Id....'  />
 }
                        
                        </form>

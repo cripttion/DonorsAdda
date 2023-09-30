@@ -6,12 +6,12 @@
 const mongoose = require('mongoose');
 
 const adminSchema = new mongoose.Schema({
-    name:{
+    Name:{
         type:String,
         required:true,
 
     },
-    email:{
+    Email:{
         type:String,
         required:true,
         

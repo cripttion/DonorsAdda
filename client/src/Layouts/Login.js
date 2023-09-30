@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 import Layout from './Layouts'
 import acc from '../assests/Images/childimg.avif'
 import { Link ,useNavigate} from 'react-router-dom'
@@ -15,13 +15,14 @@ function Login() {
         setRole(selectedRole);
         
       };
+      const formData={
+        Email,
+        Password,
+        Role
+      }
   const handlesubmit= async (e)=>{
     e.preventDefault();
-   const formData={
-     Email,
-     Password,
-     Role
-   }
+   
    console.log(formData)
     try {
         const response = await fetch('/login', {
@@ -34,7 +35,9 @@ function Login() {
         if (response.ok) {
           console.log('Registration successful');
           const responseData = await response.json();
-          
+          localStorage.setItem('Email',Email);
+          localStorage.setItem('password',Password);
+          localStorage.setItem("role",Role);
           setEmail('');
           setPassword('');
           setRole('')
@@ -44,16 +47,23 @@ function Login() {
           console.log(userData);
           setLoginSate(true);
           setLoginRole(Role);
-          navigate('/')
+          if(Role==="NGOs"){
+            navigate('/ngos')
+          }
+         else{ navigate('/')}
         } else {
           console.error('Login failed');
+          alert("check id and password");
         }
       } catch (error) {
         console.log('An error occurred:', error);
+        alert("check id and password");
+
       }
 
     console.log(formData);
   }
+  
   return (
     <Layout>
         <div className='flex justify-center items-center  '>
