@@ -47,7 +47,7 @@ function DonateNowCard(props) {
         <QRCode
         value={`upi://pay?pa=${props.upiId}&pn=Crittion&tn=cftrhwetaw4gta&am=${amount}`}
         size="300"
-        logoImage="https://i.postimg.cc/5tdHfkxF/118852864-1241633666213183-4722008391193475906-n.png"
+        // logoImage="https://i.postimg.cc/5tdHfkxF/118852864-1241633666213183-4722008391193475906-n.png"
         logoWidth="80"
         logoHeight="100"
         logoOpacity="0.6"

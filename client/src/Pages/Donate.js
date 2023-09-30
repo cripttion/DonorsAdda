@@ -15,8 +15,7 @@ function Donate() {
   const {loginState,loginRole,setLoginSate,setLoginRole,userData,setUserData} = useLoginManager(); 
   const userName = userData.Name; 
   const titleBackStirng = "THNAK YOU " +(userData.Name===undefined?"":userData.Name);
-  const [trackingData, setTrackingData] = useState([{}]);
-  const [dontedData,setDonatedData] = useState([]);
+  const [trackingData, setTrackingData] = useState([]);
   const[handleSectionClicks,setHandleSectionClick] = useState(false);
   useEffect(() => {
     // Fetch all tracking details from your API using the fetch API
@@ -31,9 +30,7 @@ function Donate() {
         // const donatedObjects = data.map((tracking) => tracking.DonatedObjects);
         
         setTrackingData(data);
-        console.log(data);
-        const donatedObjects = data.map((trcking) => trcking.DonatedObjects);
-        setDonatedData(donatedObjects);
+
       })
       .catch((error) => {
         console.error('Error fetching all tracking details:', error);
@@ -42,7 +39,7 @@ function Donate() {
  
   const handleUploadSuccess = (newData) => {
    
-    setDonatedData((prevData) => [...prevData, newData]);
+    setTrackingData((prevData) => [...prevData, newData]);
   };
 
   const handleSectionClick =()=>{
@@ -56,19 +53,19 @@ function Donate() {
      <div className='grid grid-cols-1 md:grid-cols-3 gap-10 mt-10 mx-10 '>
       
        <div className='donateNowCard  md:col-span-2 grid grid-col-1 md:grid-cols-3 gap-5 border-r-4 border-red'>
-        {dontedData.map((tracking)=>(
+        {trackingData.map((tracking)=>(
        <div> 
        <DonateNowCard
           userName={userName}
           imageUrl={
-            tracking.Images.length>0
-              ? `data:image/jpeg;base64,${tracking.Images[0].imgdata}`
+            tracking.DonatedObjects && tracking.DonatedObjects.Images.length > 0
+              ? `data:image/jpeg;base64,${tracking.DonatedObjects.Images[0].imgdata}`
               :  'https://www.bigpharmacy.com.my/scripts/timthumb.php?src=https://www.bigpharmacy.com.my//site_media/img/106897EA.jpg&w=500&zc=1'
           }
           
-          Name={tracking.Name}
-          Message ={tracking.Message}
-          
+          Name={tracking.NgoDetails.Name}
+          Message ={tracking.DonatedObjects.Message}
+          upiId={tracking.DonatedObjects.UpiId}
         />
     </div>
         ))}
